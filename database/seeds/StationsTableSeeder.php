@@ -12,8 +12,7 @@ class StationsTableSeeder extends Seeder
      */
     public function run()
     {
-        Station::truncate();
-
+        
         $stations = [[
             'code' => 'AKB',
             'name' => 'Aekloba',

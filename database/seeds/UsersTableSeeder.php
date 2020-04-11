@@ -33,9 +33,7 @@ class UsersTableSeeder extends Seeder
             "address" => "Permata Bintaro Residence",
             "level" => "User",
         ]];
-
        
-
         foreach($users as $user){
             User::create($user);
         }

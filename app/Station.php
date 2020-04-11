@@ -14,4 +14,13 @@ class Station extends Model
     protected $fillable = [
         'code', 'name', 'city',
     ];
+
+    protected $hidden = [
+        'id', 'createdAt', 'updatedAt'
+    ];
+
+    public function tickets() 
+    {
+       return $this->hasMany('App\Ticket');
+    }
 }

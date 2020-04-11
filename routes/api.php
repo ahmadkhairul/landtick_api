@@ -13,18 +13,20 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['prefix' => 'v1'], function () {
+    //Authentication
+    Route::post('register', 'AuthController@Register');
+    Route::post('login', 'AuthController@Login');
+    Route::get('auth', 'AuthController@AuthUser');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    //Stations
+    Route::get('stations','StationController@index');
+    Route::get('station/{offset}','StationController@limit');
+    Route::post('station','StationController@store')->middleware('auth.token');
+    Route::put('station/{id}','StationController@update')->middleware('auth.token');
+    Route::delete('station/{id}','StationController@destroy')->middleware('auth.token');
+
+    //Stations
+    Route::get('tickets','TicketController@index');
+    Route::get('ticket/{offset}','TicketController@limit');
 });
-//Authentication
-Route::post('register', 'AuthController@Register');
-Route::post('login', 'AuthController@Login');
-Route::get('auth', 'AuthController@AuthUser');
-
-//Stations
-Route::get('stations','StationController@index');
-Route::get('station/{offset}','StationController@limit');
-Route::post('station','StationController@store');
-Route::put('station/{id}','StationController@update');
-Route::delete('station/{id}','StationController@destroy');
