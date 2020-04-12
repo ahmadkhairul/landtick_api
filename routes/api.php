@@ -26,7 +26,12 @@ Route::group(['prefix' => 'v1'], function () {
     Route::put('station/{id}','StationController@update')->middleware('auth.token');
     Route::delete('station/{id}','StationController@destroy')->middleware('auth.token');
 
-    //Stations
+    //Tickets
     Route::get('tickets','TicketController@index');
     Route::get('ticket/{offset}','TicketController@limit');
+    Route::post('ticket','TicketController@store')->middleware('auth.token');
+    Route::post('searchTicket','TicketController@search');
+
+    //Order
+    
 });
